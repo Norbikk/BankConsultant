@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "evEwMkT61Bujw96nt/kFFK2ToqBwUdcucU1Ig7Nqmv9EIFw16Lh7GJLOY94DOFRC8/jPLhCOLDX2iydtixU1Aw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kiril\\RiderProjects\\BankConsultant\\BankConsultant\\BankConsultant.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kiril\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\kiril\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\kiril\\.nuget\\packages\\wpf-ui\\1.2.2-prerelease136\\wpf-ui.1.2.2-prerelease136.nupkg.sha512"
+  ],
+  "logs": []
+}
