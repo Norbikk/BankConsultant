@@ -35,9 +35,9 @@
                  Height="30"
                  VerticalAlignment="Top"
                  Margin="10, 20, 10,10"
-                 IsEnabled="False"
                  HorizontalContentAlignment="Center"
-                 VerticalContentAlignment="Center"/>
+                 VerticalContentAlignment="Center"
+                 IsEnabled="False"/>
         <TextBlock Grid.Row="1" Grid.Column="1"
                    Text="Фамилия"
                    Margin="0, 50, 0 , 0"
@@ -46,9 +46,9 @@
                  Height="30"
                  VerticalAlignment="Top"
                  Margin="10, 70, 10,10"
-                 IsEnabled="False" 
                  HorizontalContentAlignment="Center"
-                 VerticalContentAlignment="Center"/>
+                 VerticalContentAlignment="Center"
+                 IsEnabled="False"/>
         <TextBlock Grid.Row="1" Grid.Column="1"
                    Text="Отчество"
                    Margin="0, 100, 0 , 0"
@@ -57,14 +57,14 @@
                  Height="30"
                  VerticalAlignment="Top"
                  Margin="10, 120, 10,10"
-                 IsEnabled="False" 
                  HorizontalContentAlignment="Center"
-                 VerticalContentAlignment="Center"/>
+                 VerticalContentAlignment="Center"
+                 IsEnabled="False"/>
         <TextBlock Grid.Row="1" Grid.Column="1"
                    Text="Номер телефона"
                    Margin="0, 150, 0 , 0"
                    HorizontalAlignment="Center" />
-        <TextBox Grid.Row="1" Grid.Column="1" Name = "PhoneName"
+        <TextBox Grid.Row="1" Grid.Column="1" Name = "PhoneNumber"
                  Height="30"
                  VerticalAlignment="Top"
                  Margin="10, 170, 10,10"
@@ -74,24 +74,24 @@
                    Text="Серия паспорта"
                    Margin="0, 0, 0 , 0"
                    HorizontalAlignment="Center" />
-        <TextBox Grid.Row="1" Grid.Column="2" Name = "PasportSeries"
+        <TextBox Grid.Row="1" Grid.Column="2" Name = "PassportSeries"
                  Height="30"
                  VerticalAlignment="Top"
                  Margin="10, 20, 10,10"
-                 IsEnabled="False" 
                  HorizontalContentAlignment="Center"
-                 VerticalContentAlignment="Center"/>
+                 VerticalContentAlignment="Center"
+                 IsEnabled="False"/>
         <TextBlock Grid.Row="1" Grid.Column="2"
                    Text="Номер паспорта"
                    Margin="0, 50, 0 , 0"
                    HorizontalAlignment="Center" />
-        <TextBox Grid.Row="1" Grid.Column="2" Name = "PasportNumber"
+        <TextBox Grid.Row="1" Grid.Column="2" Name = "PassportNumber"
                  Height="30"
                  VerticalAlignment="Top"
                  Margin="10, 70, 10,10"
-                 IsEnabled="False" 
                  HorizontalContentAlignment="Center"
-                 VerticalContentAlignment="Center"/>
+                 VerticalContentAlignment="Center"
+                 IsEnabled="False"/>
         <Button Grid.Row="3" Grid.Column="2" Name = "SaveButton"
                 Height="50"
                 VerticalAlignment="Bottom"

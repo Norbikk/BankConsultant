@@ -1,4 +1,3 @@
-C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-windows\BankConsultant.csproj.AssemblyReference.cache
 C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-windows\App.g.cs
 C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-windows\BankConsultant_MarkupCompile.cache
 C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\bin\Debug\net5.0-windows\BankConsultant.exe
@@ -31,3 +30,6 @@ C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-wind
 C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-windows\UserWindow.g.cs
 C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-windows\ConsultantPage.baml
 C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-windows\UserWindow.baml
+C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-windows\ManagerPage.g.cs
+C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-windows\ManagerPage.baml
+C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-windows\BankConsultant.csproj.AssemblyReference.cache

@@ -1,13 +1,15 @@
-﻿namespace BankConsultant
+﻿using System;
+
+namespace BankConsultant
 {
     public class Person
     {
         public string Name { get; set; }
         public string Surname { get; set; }
         public string SecondName { get; set; }
-        public int PassportSeries { get; set; }
-        public int PassportNumber { get; set; }
-        public long PhoneNumber { get; set; }
+        public string PassportSeries { get; set; }
+        public string PassportNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
 
         /// <summary>
@@ -19,15 +21,28 @@
         /// <param name="passportSeries"></param>
         /// <param name="passportNumber"></param>
         /// <param name="phoneNumber"></param>
-        public Person(string name, string surname, string secondName, int passportSeries, int passportNumber,
-            long phoneNumber)
+        public Person(string name, string surname, string secondName, string passportSeries, string passportNumber,
+            string phoneNumber)
         {
             Name = name;
             Surname = surname;
             SecondName = secondName;
-            PassportSeries = passportSeries;
-            PassportNumber = passportNumber;
+            PassportSeries = Convert.ToString(passportSeries);
+            PassportNumber = Convert.ToString(passportNumber);
             PhoneNumber = phoneNumber;
+        }
+        public Person()
+        {
+
+        }
+        public Person(Person person)
+        {
+            Name = person.Name;
+            Surname = person.Surname;
+            SecondName = person.SecondName;
+            PassportSeries = Convert.ToString(person.PassportSeries);
+            PassportNumber = Convert.ToString(person.PassportNumber);
+            PhoneNumber = person.PhoneNumber;
         }
 
         /// <summary>

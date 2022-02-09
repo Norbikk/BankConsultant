@@ -9,13 +9,11 @@ namespace BankConsultant
     public partial class MainWindow : Window
     {
         private Page _p1;
-        private Page _p2;
 
         public MainWindow()
         {
             InitializeComponent();
             _p1 = new UserWindow();
-            _p2 = new ConsultantPage();
         }
 
         /// <summary>
@@ -36,8 +34,13 @@ namespace BankConsultant
         /// <param name="e"></param>
         private void BtnPage2Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = _p2;
+            MainFrame.Content = new ConsultantPage();
             Title = "Консультант";
+        }
+        private void BtnPage3Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new ManagerPage();
+            Title = "Менеджер";
         }
     }
 }

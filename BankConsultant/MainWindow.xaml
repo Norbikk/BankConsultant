@@ -33,6 +33,11 @@
                 FontSize="14"
                 Background="LightBlue"
                 Click="BtnPage2Click"/>
+        <Button Name = "BtnPageManager" Grid.Column="2"
+                Content="Поле Менеджера"
+                FontSize="14"
+                Background="LightBlue"
+                Click="BtnPage3Click"/>
 <Frame Name = "MainFrame" Grid.Row = "0" Grid.RowSpan="4" Grid.ColumnSpan="3" 
        VerticalAlignment="Stretch" 
        HorizontalAlignment="Stretch"

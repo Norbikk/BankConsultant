@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\obj\Debug\net5.0-windows\
+c:\users\kiril\riderprojects\bankconsultant\BankConsultant\obj\Debug\net5.0-windows\
 BankConsultant
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\App.xaml
-31573294555
+c:\users\kiril\riderprojects\bankconsultant\BankConsultant\App.xaml
+4-1910007078
 
-7-1607107967
+12-136416468
 195-331572847
-ConsultantPage.xaml;MainWindow.xaml;UserWindow.xaml;
+ConsultantPage.xaml;MainWindow.xaml;ManagerPage.xaml;UserWindow.xaml;
 
-False
+True
 
