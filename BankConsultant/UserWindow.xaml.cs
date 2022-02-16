@@ -27,7 +27,7 @@ namespace BankConsultant
             AddNewPerson();
 
             Pew.Text = $"db Count = {PersonDataBase.Db.Count}";
-            WorkWithJson.DatabaseToJson();
+            WorkWithJson.DatabaseToJson(PersonDataBase.Db, "db.json");
   
         }
 
@@ -39,12 +39,16 @@ namespace BankConsultant
             
             if (IsFailed())
             {
-                PersonDataBase.Db.Add(new Person(Name.Text,
-                    Surname.Text,
-                    SecondName.Text,
-                    PassportSeries.Text,
-                    PassportNumber.Text,
-                    PhoneNumber.Text)
+                PersonDataBase.Db.Add(new Person()
+                    {
+                        Id = PersonDataBase.Db.Count +1,
+                        Name = Name.Text,
+                        Surname = Surname.Text,
+                        SecondName = SecondName.Text,
+                        PassportSeries = PassportSeries.Text,
+                        PassportNumber = PassportNumber.Text,
+                        PhoneNumber = PhoneNumber.Text,
+                    }
                 );
             }
             else

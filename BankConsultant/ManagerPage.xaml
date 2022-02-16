@@ -87,6 +87,13 @@
                  Margin="10, 70, 10,10"
                  HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Name = "Check"
+                 Height="113"
+                 VerticalAlignment="Top"
+                 Margin="10,28,10,0"
+                 IsEnabled="False"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center" FontSize="12" />
         <Button Grid.Row="3" Grid.Column="2" Name = "SaveButton"
                 Height="50"
                 VerticalAlignment="Bottom"
@@ -94,8 +101,30 @@
                 Content="Сохранить"
                 FontSize="20"
                 Background="Gainsboro"
-                Click="OnClickEditButton"
-                />
-        
+                Click="OnClickEditButton" />
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name = "WhoChanged"
+            Height="30"
+            VerticalAlignment="Top"
+            Margin="10,28,10,0"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+                 IsEnabled="False"/>
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name = "WhenChanged"
+            Height="30"
+            VerticalAlignment="Top"
+            Margin="10,84,10,0"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+                 IsEnabled="False"/>
+        <TextBlock Grid.Row="2" Grid.Column="2"
+            Text="Кто внес последние изменения"
+            HorizontalAlignment="Center" Margin="0,5,0,182" />
+        <TextBlock Grid.Row="2" Grid.Column="2"
+            Text="Когда были внесены изменения"
+            HorizontalAlignment="Center" Margin="0,61,0,126" />
+
+
+
+
     </Grid>
 </Page>

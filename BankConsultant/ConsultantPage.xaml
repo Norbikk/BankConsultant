@@ -101,6 +101,33 @@
                 Background="Gainsboro"
                 Click="OnBtnSaveClick"
                 />
-        
+        <TextBox Grid.Row="2" Grid.Column="1" Name = "Check"
+                 Height="113"
+                 VerticalAlignment="Top"
+                 Margin="10,28,10,0"
+                 IsEnabled="False"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center" FontSize="12" />
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name = "WhoChanged"
+            Height="30"
+            VerticalAlignment="Top"
+            Margin="10,28,10,0"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            IsEnabled="False"/>
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name = "WhenChanged"
+            Height="30"
+            VerticalAlignment="Top"
+            Margin="10,84,10,0"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            IsEnabled="False"/>
+        <TextBlock Grid.Row="2" Grid.Column="2"
+            Text="Кто внес последние изменения"
+            HorizontalAlignment="Center" Margin="0,5,0,182" />
+        <TextBlock Grid.Row="2" Grid.Column="2"
+            Text="Когда были внесены изменения"
+            HorizontalAlignment="Center" Margin="0,61,0,126" />
+
     </Grid>
 </Page>

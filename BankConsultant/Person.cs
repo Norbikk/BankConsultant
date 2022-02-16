@@ -4,6 +4,7 @@ namespace BankConsultant
 {
     public class Person
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string SecondName { get; set; }
@@ -11,38 +12,39 @@ namespace BankConsultant
         public string PassportNumber { get; set; }
         public string PhoneNumber { get; set; }
 
+        public DateTime DateOfChanging { get; set; }
 
-        /// <summary>
-        /// Конструктор класса Person
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="surname"></param>
-        /// <param name="secondName"></param>
-        /// <param name="passportSeries"></param>
-        /// <param name="passportNumber"></param>
-        /// <param name="phoneNumber"></param>
-        public Person(string name, string surname, string secondName, string passportSeries, string passportNumber,
-            string phoneNumber)
-        {
-            Name = name;
-            Surname = surname;
-            SecondName = secondName;
-            PassportSeries = Convert.ToString(passportSeries);
-            PassportNumber = Convert.ToString(passportNumber);
-            PhoneNumber = phoneNumber;
-        }
+        public string WhoChanging { get; set; }
+
+
+       
         public Person()
         {
 
         }
         public Person(Person person)
         {
+            Id = person.Id;
             Name = person.Name;
             Surname = person.Surname;
             SecondName = person.SecondName;
             PassportSeries = Convert.ToString(person.PassportSeries);
             PassportNumber = Convert.ToString(person.PassportNumber);
             PhoneNumber = person.PhoneNumber;
+            DateOfChanging = person.DateOfChanging;
+            WhoChanging = person.WhoChanging;
+        }
+        public Person(int id,Person person)
+        {
+            Id = id;
+            Name = person.Name;
+            Surname = person.Surname;
+            SecondName = person.SecondName;
+            PassportSeries = Convert.ToString(person.PassportSeries);
+            PassportNumber = Convert.ToString(person.PassportNumber);
+            PhoneNumber = person.PhoneNumber;
+            DateOfChanging = person.DateOfChanging;
+            WhoChanging = person.WhoChanging;
         }
 
         /// <summary>

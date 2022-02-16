@@ -9,8 +9,9 @@ namespace BankConsultant
     {
         private Consultant Consultant { get; }
 
+        public WorkWithJson WorkWithJson1 { get => WorkWithJson; set => WorkWithJson = value; }
+
         private WorkWithJson WorkWithJson = new WorkWithJson();
-        //private Consultant _consultant;
 
         /// <summary>
         /// Основной метод страницы консультанта
@@ -19,7 +20,6 @@ namespace BankConsultant
         {
             Consultant = new Consultant();
             InitializeComponent();
-            WorkWithJson.DeserializePersonJson();
             var personsInfo = Consultant.GetUsers();
             ListDbView.ItemsSource = personsInfo;
 
@@ -31,9 +31,15 @@ namespace BankConsultant
         /// <param name="e"></param>
         private void OnBtnSaveClick(object sender, RoutedEventArgs e)
         {
-
-            PersonDataBase.Db[ListDbView.SelectedIndex].PhoneNumber = PhoneNumber.Text;
-            WorkWithJson.DatabaseToJson();
+            if (ListDbView.SelectedIndex > -1)
+            {
+                Consultant.SaveLastChanges(ListDbView.SelectedIndex);
+                WorkWithJson1.DatabaseToJson(PersonDataBase.LastChangesDb, "lastChanges.json");
+                PersonDataBase.Db[ListDbView.SelectedIndex].DateOfChanging = DateTime.Now;
+                PersonDataBase.Db[ListDbView.SelectedIndex].WhoChanging = "Консультант";
+                PersonDataBase.Db[ListDbView.SelectedIndex].PhoneNumber = PhoneNumber.Text;
+                WorkWithJson.DatabaseToJson(PersonDataBase.Db, "db.json");
+            }
         }
 
 
@@ -48,10 +54,12 @@ namespace BankConsultant
             {
                 ListDbView.SelectedItem = PersonDataBase.Db[ListDbView.SelectedIndex];
                 SelectionItem();
+               Check.Text =  Consultant.CheckChanges(ListDbView.SelectedIndex);
             }
 
 
         }
+
 
         /// <summary>
         /// Перенос выбранных данных
@@ -59,32 +67,24 @@ namespace BankConsultant
         private void SelectionItem()
         {
             var personInfo = Consultant.GetUserById(ListDbView.SelectedIndex);
+            WhoChanged.Text = personInfo.WhoChanging;           
             Name.Text = personInfo.Name;
             Surname.Text = personInfo.Surname;
             SecondName.Text = personInfo.SecondName;
             PhoneNumber.Text = personInfo.PhoneNumber.ToString();
             PassportSeries.Text = personInfo.PassportSeries;
             PassportNumber.Text = personInfo.PassportNumber;
+
+            if (personInfo.DateOfChanging != default)
+            {
+                WhenChanged.Text = personInfo.DateOfChanging.ToString();
+            }
+            else
+            {
+                WhenChanged.Text = String.Empty;
+            }
         }
 
-        /* private void Edit()
-         {
-             Consultant.UpdatePerson(ListDbView.SelectedIndex, new Person(Name.Text,
-                     Surname.Text,
-                     SecondName.Text,
-                     Convert.ToString(PassportSeries.Text),
-                     Convert.ToString(PassportNumber.Text),
-                     Convert.ToString(PhoneNumber.Text)));
-         }
-         /// <summary>
-         /// Это потом в менеджера
-         /// </summary>
-         private void OnClickEditButton()
-         {
-             Edit();
-             WorkWithJson.DatabaseToJson();
-         }
-        */
     
     }
 }

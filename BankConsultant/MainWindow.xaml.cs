@@ -13,6 +13,8 @@ namespace BankConsultant
         public MainWindow()
         {
             InitializeComponent();
+            PersonDataBase.Db = WorkWithJson.DeserializePersonJson( "db.json");
+            PersonDataBase.LastChangesDb = WorkWithJson.DeserializePersonJson("lastChanges.json");
             _p1 = new UserWindow();
         }
 
