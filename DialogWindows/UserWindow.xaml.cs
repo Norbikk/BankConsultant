@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Net.Mime;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.VisualBasic;
 
 namespace BankConsultant
 {
     public partial class UserWindow : Page
     {
-        
         private WorkWithJson WorkWithJson = new WorkWithJson();
+
         /// <summary>
         /// Оснвной метод страницы Юзера
         /// </summary>
@@ -28,7 +30,6 @@ namespace BankConsultant
 
             Pew.Text = $"db Count = {PersonDataBase.Db.Count}";
             WorkWithJson.DatabaseToJson(PersonDataBase.Db, "db.json");
-  
         }
 
         /// <summary>
@@ -36,12 +37,11 @@ namespace BankConsultant
         /// </summary>
         private void AddNewPerson()
         {
-            
             if (IsFailed())
             {
                 PersonDataBase.Db.Add(new Person()
                     {
-                        Id = PersonDataBase.Db.Count +1,
+                        Id = PersonDataBase.Db.Count + 1,
                         Name = Name.Text,
                         Surname = Surname.Text,
                         SecondName = SecondName.Text,
@@ -51,59 +51,50 @@ namespace BankConsultant
                     }
                 );
             }
-            else
-            {
-                Name.Text = "Введите корректное имя";
-                Surname.Text = "Введите корректную фамилию";
-                SecondName.Text = "Введите корректное отчество";
-                PassportSeries.Text = "Введите числа";
-                PassportNumber.Text = "Введите числа";
-                PhoneNumber.Text = "Введите числа";
-            }
-
-            
         }
 
         private bool IsFailed()
         {
-            if (String.IsNullOrEmpty(Name.Text))
-            {
-                return false;
-            }
+            Name.Text = AddTextIsFailed(Name.Text);
+            Surname.Text = AddTextIsFailed(Surname.Text);
+            SecondName.Text = AddTextIsFailed(SecondName.Text);
+            PassportSeries.Text = AddTextIsFailed(PassportSeries.Text);
+            PassportNumber.Text = AddTextIsFailed(PassportNumber.Text);
+            PhoneNumber.Text = AddTextIsFailed(PhoneNumber.Text);
 
-            if (String.IsNullOrEmpty(Surname.Text))
-            {
-                return false;
-            }
 
-            if (String.IsNullOrEmpty(SecondName.Text))
-            {
-                return false;
-            }
-
-            if (String.IsNullOrEmpty(PassportSeries.Text))
-            {
-                return false;
-            }
-
-            if (String.IsNullOrEmpty(PassportNumber.Text))
-            {
-                return false;
-            }
-
-            if (String.IsNullOrEmpty(PhoneNumber.Text))
-            {
-                return false;
-            }
-            int number;
-            long longNumber;
-            bool isNumeric = Int32.TryParse(PassportSeries.Text, out number) && Int32.TryParse(PassportNumber.Text, out number ) && Int64.TryParse(PhoneNumber.Text, out longNumber);
+            bool isNumeric = Int32.TryParse(PassportSeries.Text, out _) &&
+                             Int32.TryParse(PassportNumber.Text, out _) &&
+                             Int64.TryParse(PhoneNumber.Text, out _);
+            PassportSeries.Text = AddTextIsNumeric(PassportSeries.Text);
+            PassportNumber.Text = AddTextIsNumeric(PassportNumber.Text);
+            PhoneNumber.Text = AddTextIsNumeric(PhoneNumber.Text);
             if (!isNumeric)
             {
                 return false;
             }
 
             return true;
+        }
+
+        private string AddTextIsNumeric(string text)
+        {
+            if (!Int32.TryParse(text, out _) || !Int64.TryParse(text, out _))
+            {
+                return $"Введите цифры";
+            }
+
+            return text;
+        }
+
+        private string AddTextIsFailed(string text)
+        {
+            if (String.IsNullOrEmpty(text))
+            {
+                return $"Введите корректное значение {text}";
+            }
+
+            return text;
         }
     }
 }

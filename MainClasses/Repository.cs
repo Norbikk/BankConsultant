@@ -9,14 +9,50 @@ namespace BankConsultant
         protected readonly ObservableCollection<Person> LastChangesDatabase = PersonDataBase.LastChangesDb;
         protected readonly ObservableCollection<Person> Database = PersonDataBase.Db;
 
-        private Person GetPersonInfo(int id)
+        public string CheckChanges(int id)
         {
-            return PersonDataBase.Db[id];
+            var str = string.Empty;
+            for (int i = 0; i < LastChangesDatabase.Count; i++)
+            {
+                if (Database[id].Id == LastChangesDatabase[i].Id)
+                {
+                    str = Check(id, i) + Environment.NewLine;
+                }
+            }
+
+            return str;
         }
 
-        private ObservableCollection<Person> GetPersonsInfo()
+        public ObservableCollection<Person> GetUsers()
         {
-            return PersonDataBase.Db;
+            return GetPersonsInfo();
+        }
+
+        public void SaveLastChanges(int id)
+        {
+            if (id == -1)
+            {
+                return;
+            }
+
+            if (PersonDataBase.LastChangesDb.Any(x => x.Id == PersonDataBase.Db[id].Id))
+            {
+                var single = PersonDataBase.LastChangesDb.ToList().FindIndex(x => x.Id == PersonDataBase.Db[id].Id);
+                PersonDataBase.LastChangesDb[single] = new Person(PersonDataBase.Db[id].Id,
+                    GetUser(id));
+            }
+            else
+            {
+                PersonDataBase.LastChangesDb.Add(new Person(PersonDataBase.Db[id].Id,
+                    GetUser(id)));
+            }
+        }
+
+        public virtual Person GetUserById(int id)
+        {
+            var person = new Person(GetPersonInfo(id));
+
+            return person;
         }
 
         protected virtual String Check(int id, int lastChangeId)
@@ -31,7 +67,7 @@ namespace BankConsultant
             return changes;
         }
 
-        protected virtual string AddChange(string typeName, string newText, string oldText)
+        protected string AddChange(string typeName, string newText, string oldText)
         {
             if (newText != oldText)
             {
@@ -59,58 +95,20 @@ namespace BankConsultant
             return strNew;
         }
 
-        public string CheckChanges(int id)
-        {
-            var str = string.Empty;
-            for (int i = 0; i < LastChangesDatabase.Count; i++)
-            {
-                if (Database[id].Id == LastChangesDatabase[i].Id)
-                {
-                    str = Check(id, i) + Environment.NewLine;
-                }
-            }
-
-            return str;
-        }
-
-        public ObservableCollection<Person> GetUsers()
-        {
-            return GetPersonsInfo();
-        }
-
-        public void SaveLastChanges(int id)
-        {
-            var person = Database[id];
-            if (id == -1)
-            {
-                return;
-            }
-
-            if (PersonDataBase.LastChangesDb.Any(x => x.Id == PersonDataBase.Db[id].Id))
-            {
-                var single = PersonDataBase.LastChangesDb.ToList().FindIndex(x => x.Id == PersonDataBase.Db[id].Id);
-                PersonDataBase.LastChangesDb[single] = new Person(PersonDataBase.Db[id].Id,
-                    GetUser(id));
-            }
-            else
-            {
-                PersonDataBase.LastChangesDb.Add(new Person(PersonDataBase.Db[id].Id,
-                    GetUser(id)));
-            }
-        }
-
-        public virtual Person GetUserById(int id)
-        {
-            var person = new Person(GetPersonInfo(id));
-
-            return person;
-        }
-
-       
 
         private Person GetUser(int id)
         {
             return Database[id];
+        }
+
+        private Person GetPersonInfo(int id)
+        {
+            return PersonDataBase.Db[id];
+        }
+
+        private ObservableCollection<Person> GetPersonsInfo()
+        {
+            return PersonDataBase.Db;
         }
     }
 }

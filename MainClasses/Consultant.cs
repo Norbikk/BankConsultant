@@ -2,6 +2,14 @@
 {
     public class Consultant : Repository
     {
+        public override Person GetUserById(int id)
+        {
+            var person = base.GetUserById(id);
+            person.PassportSeries = SecureData(person.PassportSeries);
+            person.PassportNumber = SecureData(person.PassportNumber);
+
+            return person;
+        }
         protected override string Check(int id, int lastChangeId)
         {
             var changes = base.Check(id, lastChangeId);
@@ -20,13 +28,6 @@
             return changes;
         }
 
-        public override Person GetUserById(int id)
-        {
-            var person = base.GetUserById(id);
-            person.PassportSeries = SecureData(person.PassportSeries);
-            person.PassportNumber = SecureData(person.PassportNumber);
 
-            return person;
-        }
     }
 }
