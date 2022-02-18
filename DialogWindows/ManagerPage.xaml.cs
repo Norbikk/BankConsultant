@@ -77,6 +77,9 @@ namespace BankConsultant
             }
         }
 
+        /// <summary>
+        /// Редактирует данные Person[listDbView.SelectedIndex]
+        /// </summary>
         private void Edit()
         {
             Manager.UpdatePerson(ListDbView.SelectedIndex, new Person()

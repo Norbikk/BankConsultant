@@ -40,6 +40,11 @@ namespace BankConsultant
             Title = "Консультант";
         }
 
+        /// <summary>
+        /// Выбор страницы менеджера
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnPage3Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new ManagerPage();

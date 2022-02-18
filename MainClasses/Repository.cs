@@ -9,6 +9,11 @@ namespace BankConsultant
         protected readonly ObservableCollection<Person> LastChangesDatabase = PersonDataBase.LastChangesDb;
         protected readonly ObservableCollection<Person> Database = PersonDataBase.Db;
 
+        /// <summary>
+        /// Проверяет изменения в базе
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string CheckChanges(int id)
         {
             var str = string.Empty;
@@ -22,12 +27,19 @@ namespace BankConsultant
 
             return str;
         }
-
+        /// <summary>
+        /// Получение базы Person
+        /// </summary>
+        /// <returns></returns>
         public ObservableCollection<Person> GetUsers()
         {
-            return GetPersonsInfo();
+            return PersonDataBase.Db;
         }
 
+        /// <summary>
+        /// Сохраняет последние изменения
+        /// </summary>
+        /// <param name="id">Индекс базы данных</param>
         public void SaveLastChanges(int id)
         {
             if (id == -1)
@@ -47,14 +59,23 @@ namespace BankConsultant
                     GetUser(id)));
             }
         }
-
+        /// <summary>
+        /// Получает персона по индексу
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public virtual Person GetUserById(int id)
         {
-            var person = new Person(GetPersonInfo(id));
+            var person = new Person(GetUser(id));
 
             return person;
         }
-
+        /// <summary>
+        /// проверяет данные на совпадения
+        /// </summary>
+        /// <param name="id">индекс базы данных</param>
+        /// <param name="lastChangeId">индекс базы истории</param>
+        /// <returns>Возвращает строку с изменениями</returns>
         protected virtual String Check(int id, int lastChangeId)
         {
             var changes = String.Empty;
@@ -66,7 +87,13 @@ namespace BankConsultant
 
             return changes;
         }
-
+        /// <summary>
+        /// Метод для сравнения
+        /// </summary>
+        /// <param name="typeName">Тип изменения</param>
+        /// <param name="newText">Новая информация</param>
+        /// <param name="oldText">Старая информация</param>
+        /// <returns></returns>
         protected string AddChange(string typeName, string newText, string oldText)
         {
             if (newText != oldText)
@@ -76,7 +103,11 @@ namespace BankConsultant
 
             return null;
         }
-
+        /// <summary>
+        /// Засекречивание данных
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns>Возвращает строку с ***</returns>
         protected static string SecureData(string str)
         {
             char[] chars = null;
@@ -95,20 +126,16 @@ namespace BankConsultant
             return strNew;
         }
 
-
+        /// <summary>
+        /// Получение данных о Person
+        /// </summary>
+        /// <param name="id">индекс</param>
+        /// <returns>Возвращает Person</returns>
         private Person GetUser(int id)
         {
             return Database[id];
         }
 
-        private Person GetPersonInfo(int id)
-        {
-            return PersonDataBase.Db[id];
-        }
 
-        private ObservableCollection<Person> GetPersonsInfo()
-        {
-            return PersonDataBase.Db;
-        }
     }
 }

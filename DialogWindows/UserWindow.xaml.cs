@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Net.Mime;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.VisualBasic;
 
 namespace BankConsultant
 {
     public partial class UserWindow : Page
     {
-        private WorkWithJson WorkWithJson = new WorkWithJson();
+        private WorkWithJson _workWithJson { get; set; } = new WorkWithJson();
+        private List<TextBox> _textBoxes { get; set; } = new();
+
 
         /// <summary>
         /// Оснвной метод страницы Юзера
@@ -17,6 +17,7 @@ namespace BankConsultant
         public UserWindow()
         {
             InitializeComponent();
+            AddInList();
         }
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace BankConsultant
             AddNewPerson();
 
             Pew.Text = $"db Count = {PersonDataBase.Db.Count}";
-            WorkWithJson.DatabaseToJson(PersonDataBase.Db, "db.json");
+            _workWithJson.DatabaseToJson(PersonDataBase.Db, "db.json");
         }
 
         /// <summary>
@@ -37,64 +38,111 @@ namespace BankConsultant
         /// </summary>
         private void AddNewPerson()
         {
-            if (IsFailed())
+            if (IsEmpty() || IsString())
             {
-                PersonDataBase.Db.Add(new Person()
-                    {
-                        Id = PersonDataBase.Db.Count + 1,
-                        Name = Name.Text,
-                        Surname = Surname.Text,
-                        SecondName = SecondName.Text,
-                        PassportSeries = PassportSeries.Text,
-                        PassportNumber = PassportNumber.Text,
-                        PhoneNumber = PhoneNumber.Text,
-                    }
-                );
+                MessageBox.Show("Все поля должны быть заполнены!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+            if (!IsNumeric())
+            {
+                MessageBox.Show("В паспортных данных и номере телефона должны быть числа!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+
+            PersonDataBase.Db.Add(new Person()
+                {
+                    Id = PersonDataBase.Db.Count + 1,
+                    Name = Name.Text,
+                    Surname = Surname.Text,
+                    SecondName = SecondName.Text,
+                    PassportSeries = PassportSeries.Text,
+                    PassportNumber = PassportNumber.Text,
+                    PhoneNumber = PhoneNumber.Text,
+                }
+            );
         }
 
-        private bool IsFailed()
+        /// <summary>
+        /// Добавляет все текстбоксы в лист
+        /// </summary>
+        private void AddInList()
         {
-            Name.Text = AddTextIsFailed(Name.Text);
-            Surname.Text = AddTextIsFailed(Surname.Text);
-            SecondName.Text = AddTextIsFailed(SecondName.Text);
-            PassportSeries.Text = AddTextIsFailed(PassportSeries.Text);
-            PassportNumber.Text = AddTextIsFailed(PassportNumber.Text);
-            PhoneNumber.Text = AddTextIsFailed(PhoneNumber.Text);
+            _textBoxes.Add(Name);
+            _textBoxes.Add(Surname);
+            _textBoxes.Add(SecondName);
+            _textBoxes.Add(PassportSeries);
+            _textBoxes.Add(PassportNumber);
+            _textBoxes.Add(PhoneNumber);
+        }
 
-
+        /// <summary>
+        /// Проверяет введены ли в строки цифры
+        /// </summary>
+        /// <returns>Возвращает true</returns>
+        private bool IsNumeric()
+        {
             bool isNumeric = Int32.TryParse(PassportSeries.Text, out _) &&
                              Int32.TryParse(PassportNumber.Text, out _) &&
                              Int64.TryParse(PhoneNumber.Text, out _);
-            PassportSeries.Text = AddTextIsNumeric(PassportSeries.Text);
-            PassportNumber.Text = AddTextIsNumeric(PassportNumber.Text);
-            PhoneNumber.Text = AddTextIsNumeric(PhoneNumber.Text);
-            if (!isNumeric)
-            {
-                return false;
-            }
+            
+            
+                
 
-            return true;
+            return isNumeric;
         }
 
-        private string AddTextIsNumeric(string text)
-        {
-            if (!Int32.TryParse(text, out _) || !Int64.TryParse(text, out _))
-            {
-                return $"Введите цифры";
-            }
 
+        private string AddTextIsNotNumeric(string text)
+        {
+            if (Int32.TryParse(text, out _) || Int64.TryParse(text, out _))
+            {
+                return "Введите число";
+            }
             return text;
         }
-
-        private string AddTextIsFailed(string text)
+        /// <summary>
+        /// Проверяет пустые ли строки
+        /// </summary>
+        /// <returns>возвращает False</returns>
+        private bool IsEmpty()
         {
-            if (String.IsNullOrEmpty(text))
+            var str = "Введите корректное значение";
+            for (int i = 0; i < _textBoxes.Count; i++)
             {
-                return $"Введите корректное значение {text}";
+                if (_textBoxes[i].Text.Length <= 0)
+                {
+                    _textBoxes[i].Text = str;
+                    
+                    if (i == _textBoxes.Count)
+                    {
+                        
+                        return true;
+                        
+                    }
+                    
+                }
             }
-
-            return text;
+            return false;
         }
+
+        /// <summary>
+        /// Проверяет на дефолтную фразу
+        /// </summary>
+        /// <returns>возвращает false</returns>
+        private bool IsString()
+        {
+            var str = "Введите корректное значение";
+            for (int i = 0; i < _textBoxes.Count; i++)
+            {
+                if (_textBoxes[i].Text == str)
+                {
+                        return true;
+                }
+            }
+            return false;
+        }
+
+
     }
 }

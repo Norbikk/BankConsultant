@@ -2,6 +2,11 @@
 {
     public class Consultant : Repository
     {
+        /// <summary>
+        /// Получает данные с зашифрованными паспортными данными
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public override Person GetUserById(int id)
         {
             var person = base.GetUserById(id);
@@ -10,6 +15,12 @@
 
             return person;
         }
+        /// <summary>
+        /// Получает изменения с зашифрованными паспортными данными
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="lastChangeId"></param>
+        /// <returns></returns>
         protected override string Check(int id, int lastChangeId)
         {
             var changes = base.Check(id, lastChangeId);
