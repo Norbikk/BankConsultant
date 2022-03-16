@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = BankConsultant
-build_property.ProjectDir = c:\users\kiril\riderprojects\bankconsultant\BankConsultant\
+build_property.ProjectDir = C:\Users\kiril\RiderProjects\BankConsultant\BankConsultant\

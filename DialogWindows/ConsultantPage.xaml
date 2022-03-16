@@ -23,7 +23,7 @@
                    HorizontalAlignment="Center"
                    Text="Список пользователей" />
         <ListBox Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Name = "ListDbView"
-                  Margin="5, 20,5,5"
+                  Margin="5,20,5,69"
                   MouseLeftButtonUp="OnClickUser"
         />
 
@@ -92,10 +92,10 @@
                  HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center"
                  IsEnabled="False"/>
-        <Button Grid.Row="3" Grid.Column="2" Name = "SaveButton"
+        <Button Grid.Row="2" Grid.Column="2" Name = "SaveButton"
                 Height="50"
-                VerticalAlignment="Bottom"
-                Margin="10,0,10,20"
+                VerticalAlignment="Top"
+                Margin="10,146,10,0"
                 Content="Сохранить"
                 FontSize="20"
                 Background="Gainsboro"
@@ -132,6 +132,24 @@
             Text="Последние изменения"
             VerticalAlignment="Top"
             HorizontalAlignment="Center" Margin="0,10,0,0" Width="148" />
+        <Button Grid.Row="2" x:Name = "SortButton"
+            Height="50"
+            VerticalAlignment="Top"
+            Margin="5,146,161,0"
+            Content="Сортировка"
+            FontSize="15"
+            Background="Gainsboro"
+            Click="SortButton_OnClick"
+                />
+        <Button Grid.Row="2" x:Name = "DeleteButton"
+            Height="50"
+            VerticalAlignment="Top"
+            Margin="161,146,5,0"
+            Content="Удалить"
+            FontSize="15"
+            Background="Gainsboro"
+            Click="DeleteButton_OnClick"
+                />
 
     </Grid>
 </Page>

@@ -93,5 +93,20 @@ namespace BankConsultant
                 PhoneNumber = Convert.ToString(PhoneNumber.Text)
             });
         }
+
+        private void SortButton_Click(object sender, RoutedEventArgs e)
+        {
+            PersonDataBase.SortingBase();
+            ListDbView.ItemsSource = PersonDataBase.Db;
+            WorkWithJson.DatabaseToJson(PersonDataBase.Db, "db.json");
+        }
+
+        private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            PersonDataBase.Remove(ListDbView.SelectedIndex);
+            ListDbView.ItemsSource = PersonDataBase.Db;
+            WorkWithJson.DatabaseToJson(PersonDataBase.LastChangesDb, "lastChanges.json");
+            WorkWithJson.DatabaseToJson(PersonDataBase.Db, "db.json");
+        }
     }
 }
